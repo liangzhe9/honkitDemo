@@ -1,0 +1,654 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Get device status · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.16">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Send_device_control_commands.html" />
+    
+    
+    <link rel="prev" href="Get_device_list.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="Authentication.html">
+            
+                <a href="Authentication.html">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="API_Usage.html">
+            
+                <a href="API_Usage.html">
+            
+                    
+                    API Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="Standard_HTTP_Error_Codes.html">
+            
+                <a href="Standard_HTTP_Error_Codes.html">
+            
+                    
+                    Standard HTTP Error Codes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Devices</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="Get_device_list.html">
+            
+                <a href="Get_device_list.html">
+            
+                    
+                    Get device list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2" data-path="Get_device_status.html">
+            
+                <a href="Get_device_status.html">
+            
+                    
+                    Get device status
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Send_device_control_commands.html">
+            
+                <a href="Send_device_control_commands.html">
+            
+                    
+                    Send device control commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Scenes</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="Get_scene_list.html">
+            
+                <a href="Get_scene_list.html">
+            
+                    
+                    Get scene list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Execute_manual_scenes.html">
+            
+                <a href="Execute_manual_scenes.html">
+            
+                    
+                    Execute manual scenes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Support</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="Support.html">
+            
+                <a href="Support.html">
+            
+                    
+                    Support
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Get device status</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="get-device-status">Get device status</h3>
+<pre><code class="lang-http">GET /v1.0/devices/{deviceId}/status
+</code></pre>
+<h4 id="description">Description</h4>
+<p>Get the status of a physical device that has been added to the current user&apos;s account.</p>
+<p>Physical devices refer to the following SwitchBot products,</p>
+<ul>
+<li>Bot</li>
+<li>Plug</li>
+<li>Curtain</li>
+<li>Meter</li>
+<li>Humidifier</li>
+<li>Smart Fan</li>
+</ul>
+<h4 id="path-parameters">Path parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deviceId</td>
+<td>String</td>
+<td>Yes</td>
+<td>device ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses">Responses</h4>
+<p>The response is basically a JSON object, which contains the following properties,</p>
+<table>
+<thead>
+<tr>
+<th>Key Name</th>
+<th>Value Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>statusCode</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+</tr>
+<tr>
+<td>body</td>
+<td>Object<body></body></td>
+</tr>
+</tbody>
+</table>
+<p>body object contains the following properties,</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deviceId</td>
+<td>String</td>
+<td>device ID</td>
+</tr>
+<tr>
+<td>deviceType</td>
+<td>String</td>
+<td>device type</td>
+</tr>
+<tr>
+<td>hubDeviceId</td>
+<td>String</td>
+<td>device&apos;s parent Hub ID</td>
+</tr>
+<tr>
+<td>power</td>
+<td>String</td>
+<td>only available for Bot/Plug/Humidifier devices. ON/OFF state</td>
+</tr>
+<tr>
+<td>humidity</td>
+<td>Integer</td>
+<td>only available for Meter/Humidifier devices. humidity percentage</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>Float</td>
+<td>only available for Meter/Humidifier devices. temperature in celsius</td>
+</tr>
+<tr>
+<td>nebulizationEfficiency</td>
+<td>Integer</td>
+<td>only available for Humidifier devices. atomization efficiency %</td>
+</tr>
+<tr>
+<td>auto</td>
+<td>Boolean</td>
+<td>only available for Humidifier devices. determines if a Humidifier is in Auto Mode or not</td>
+</tr>
+<tr>
+<td>childLock</td>
+<td>Boolean</td>
+<td>only available for Humidifier devices. determines if a Humidifier&apos;s safety lock is on or not</td>
+</tr>
+<tr>
+<td>sound</td>
+<td>Boolean</td>
+<td>only available for Humidifier devices. determines if a Humidifier is muted or not</td>
+</tr>
+<tr>
+<td>calibrate</td>
+<td>Boolean</td>
+<td>only available for Curtain devices. determines if a Curtain has been calibrated or not</td>
+</tr>
+<tr>
+<td>group</td>
+<td>Boolean</td>
+<td>only available for Curtain devices. determines if a Curtain is paired with or grouped with another Curtain or not</td>
+</tr>
+<tr>
+<td>moving</td>
+<td>Boolean</td>
+<td>only available for Curtain devices. determines if a Curtain is moving or not</td>
+</tr>
+<tr>
+<td>slidePosition</td>
+<td>Integer</td>
+<td>only available for Curtain devices. the percentage of the distance between the calibrated open position and close position that a Curtain has moved to</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>Integer</td>
+<td>only available for Smart Fan devices. the fan mode</td>
+</tr>
+<tr>
+<td>speed</td>
+<td>Intger</td>
+<td>only available for Smart Fan devices. the fan speed</td>
+</tr>
+<tr>
+<td>shaking</td>
+<td>Boolean</td>
+<td>only available for Smart Fan devices. determines if the fan is swinging or not</td>
+</tr>
+<tr>
+<td>shakeCenter</td>
+<td>Intger</td>
+<td>only available for Smart Fan devices. the fan&apos;s swing direciton</td>
+</tr>
+<tr>
+<td>shakeRange</td>
+<td>Intger</td>
+<td>only available for Smart Fan devices. the fan&apos;s swing range, 0~120°</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The reponses may contain the following codes and message,</p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Body Content</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Device list object</td>
+<td>success</td>
+<td>Returns an object that contains two device lists</td>
+</tr>
+<tr>
+<td>n/a</td>
+<td>n/a</td>
+<td>Unauthorized</td>
+<td>Http 401 Error. User permission is denied due to invalid token.</td>
+</tr>
+<tr>
+<td>190</td>
+<td>n/a</td>
+<td>System error</td>
+<td>Device internal error due to device states not synchronized with server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sample">Sample</h4>
+<h5 id="switchbot-meter-example">SwitchBot Meter example</h5>
+<p>Request the status of a SwitchBot Thermometer and Hygrometer</p>
+<p>Request</p>
+<pre><code class="lang-http">GET https://api.switch-bot.com/v1.0/devices/C271111EC0AB/status
+</code></pre>
+<p>Response</p>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">&quot;body&quot;</span>: {
+        <span class="hljs-string">&quot;deviceId&quot;</span>: <span class="hljs-string">&quot;C271111EC0AB&quot;</span>,
+        <span class="hljs-string">&quot;deviceType&quot;</span>: <span class="hljs-string">&quot;Meter&quot;</span>,
+        <span class="hljs-string">&quot;hubDeviceId&quot;</span>: <span class="hljs-string">&quot;FA7310762361&quot;</span>,
+        <span class="hljs-string">&quot;humidity&quot;</span>: <span class="hljs-number">52</span>,
+        <span class="hljs-string">&quot;temperature&quot;</span>: <span class="hljs-number">26.1</span>
+    },
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>
+}
+</code></pre>
+<h5 id="switchbot-curtain-example">SwitchBot Curtain example</h5>
+<p>Request the status of a SwitchBot Curtain</p>
+<p>Request</p>
+<pre><code class="lang-http">GET https://api.switch-bot.com/v1.0/devices/E2F6032048AB/status
+</code></pre>
+<p>Response</p>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">&quot;body&quot;</span>: {
+        <span class="hljs-string">&quot;deviceId&quot;</span>: <span class="hljs-string">&quot;E2F6032048AB&quot;</span>,
+        <span class="hljs-string">&quot;deviceType&quot;</span>: <span class="hljs-string">&quot;Curtain&quot;</span>,
+        <span class="hljs-string">&quot;hubDeviceId&quot;</span>: <span class="hljs-string">&quot;FA7310762361&quot;</span>,
+        <span class="hljs-string">&quot;calibrate&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">&quot;group&quot;</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">&quot;moving&quot;</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-string">&quot;slidePosition&quot;</span>: <span class="hljs-number">0</span>
+    },
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Get_device_list.html" class="navigation navigation-prev " aria-label="Previous page: Get device list">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Send_device_control_commands.html" class="navigation navigation-next " aria-label="Next page: Send device control commands">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Get device status","level":"2.2","depth":1,"next":{"title":"Send device control commands","level":"2.3","depth":1,"path":"Send_device_control_commands.md","ref":"Send_device_control_commands.md","articles":[]},"previous":{"title":"Get device list","level":"2.1","depth":1,"path":"Get_device_list.md","ref":"Get_device_list.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Get_device_status.md","mtime":"2020-12-31T06:49:44.821Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

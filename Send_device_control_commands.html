@@ -1,0 +1,908 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>Send device control commands · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.16">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Get_scene_list.html" />
+    
+    
+    <link rel="prev" href="Get_device_status.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="Authentication.html">
+            
+                <a href="Authentication.html">
+            
+                    
+                    Authentication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="API_Usage.html">
+            
+                <a href="API_Usage.html">
+            
+                    
+                    API Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="Standard_HTTP_Error_Codes.html">
+            
+                <a href="Standard_HTTP_Error_Codes.html">
+            
+                    
+                    Standard HTTP Error Codes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Devices</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="Get_device_list.html">
+            
+                <a href="Get_device_list.html">
+            
+                    
+                    Get device list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Get_device_status.html">
+            
+                <a href="Get_device_status.html">
+            
+                    
+                    Get device status
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3" data-path="Send_device_control_commands.html">
+            
+                <a href="Send_device_control_commands.html">
+            
+                    
+                    Send device control commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Scenes</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="Get_scene_list.html">
+            
+                <a href="Get_scene_list.html">
+            
+                    
+                    Get scene list
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Execute_manual_scenes.html">
+            
+                <a href="Execute_manual_scenes.html">
+            
+                    
+                    Execute manual scenes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Support</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="Support.html">
+            
+                <a href="Support.html">
+            
+                    
+                    Support
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Send device control commands</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="send-device-control-commands">Send device control commands</h3>
+<pre><code class="lang-http">POST /v1.0/devices/{deviceId}/commands
+</code></pre>
+<h4 id="description">Description</h4>
+<p>Send control commands to physical devices and virtual infrared remote devices.</p>
+<h4 id="command-set-for-physical-devices">Command set for physical devices</h4>
+<p>The table below describes all the available commands for phsyical devices,</p>
+<table>
+<thead>
+<tr>
+<th>deviceType</th>
+<th>commandType</th>
+<th>Command</th>
+<th>command parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bot</td>
+<td>command</td>
+<td>turnOff</td>
+<td>default</td>
+<td>set to OFF state</td>
+</tr>
+<tr>
+<td>Bot</td>
+<td>command</td>
+<td>turnOn</td>
+<td>default</td>
+<td>set to ON state</td>
+</tr>
+<tr>
+<td>Bot</td>
+<td>command</td>
+<td>press</td>
+<td>default</td>
+<td>trigger press</td>
+</tr>
+<tr>
+<td>Plug</td>
+<td>command</td>
+<td>turnOn</td>
+<td>default</td>
+<td>set to ON state</td>
+</tr>
+<tr>
+<td>Plug</td>
+<td>command</td>
+<td>turnOff</td>
+<td>default</td>
+<td>set to OFF state</td>
+</tr>
+<tr>
+<td>Curtain</td>
+<td>command</td>
+<td>setPosition</td>
+<td>index0,mode0,postion0<br>e.g. <code>0,ff,80</code></td>
+<td>mode: 0 (Performance Mode), 1 (Silent Mode), ff (default mode) <br>postion: 0~100 (0 means opened, 100 means closed)</td>
+</tr>
+<tr>
+<td>Curtain</td>
+<td>command</td>
+<td>turnOff</td>
+<td>default</td>
+<td>equivalent to set position to 100</td>
+</tr>
+<tr>
+<td>Curtain</td>
+<td>command</td>
+<td>turnOn</td>
+<td>default</td>
+<td>equivalent to set position to 0</td>
+</tr>
+<tr>
+<td>Humidifier</td>
+<td>command</td>
+<td>turnOff</td>
+<td>default</td>
+<td>set to OFF state</td>
+</tr>
+<tr>
+<td>Humidifier</td>
+<td>command</td>
+<td>turnOn</td>
+<td>default</td>
+<td>set to ON state</td>
+</tr>
+<tr>
+<td>Humidifier</td>
+<td>command</td>
+<td>setMode</td>
+<td><code>auto</code>or <code>101</code> or<br>  <code>102</code> or <code>103</code> or <code>{0~100}</code></td>
+<td>auto, set to Auto Mode,<br>101, set atomization efficiency to 34%,<br>102, set atomization efficiency to 67%,<br>103, set atomization efficiency to 100%</td>
+</tr>
+<tr>
+<td>Smart Fan</td>
+<td>command</td>
+<td>turnOn</td>
+<td>default</td>
+<td>set to ON state</td>
+</tr>
+<tr>
+<td>Smart Fan</td>
+<td>command</td>
+<td>turnOff</td>
+<td>default</td>
+<td>set to OFF state</td>
+</tr>
+<tr>
+<td>Smart Fan</td>
+<td>command</td>
+<td>setAllStatus</td>
+<td>power,fanMode,<br>fanSpeed,shakeRange<br>e.g. <code>on,1,1,60</code></td>
+<td>power: off/on,<br>fanMode: 1/2,<br>fanSpeed: 1/2/3/4,<br>shakeRange: 0~120<br>fanMode: 1 (Standard), 2 (Natural)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="command-set-for-virtual-infrared-remote-devices">Command set for virtual infrared remote devices</h4>
+<p>The table below describes all the available commands for virtual infrared remote devices,</p>
+<table>
+<thead>
+<tr>
+<th>deviceType</th>
+<th>commandType</th>
+<th>Command</th>
+<th>command parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All home appliance types except Others</td>
+<td>&quot;&quot;</td>
+<td>turnOn</td>
+<td>default</td>
+<td>every home appliance can be turned on by default</td>
+</tr>
+<tr>
+<td>All home appliance types except Others</td>
+<td>command</td>
+<td>turnOff</td>
+<td>default</td>
+<td>every home appliance can be turned off by default</td>
+</tr>
+<tr>
+<td>Others</td>
+<td><code>customize</code></td>
+<td>{user-defined button name}</td>
+<td>default</td>
+<td>all user-defined buttons must be configured with commandType=customize</td>
+</tr>
+<tr>
+<td>Air Conditioner</td>
+<td>command</td>
+<td>setAll</td>
+<td>{temperature},{mode},{fan speed},{power state}<br>e.g. <code>26,1,3,on</code></td>
+<td>the unit of temperature is in celsius; <br>modes include 1 (auto), 2 (cool), 3 (dry), 4 (fan), 5 (heat); <br>fan speed includes 1 (auto), 2 (low), 3 (medium), 4 (high); <br>power state includes on and off</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TV, IPTV/Streamer,  Set Top Box</td>
+<td>command</td>
+<td>SetChannel</td>
+<td>{channel number}, e.g. 15</td>
+<td>set the TV channel to switch to</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>volumeAdd</td>
+<td>default</td>
+<td>volume up</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>volumeSub</td>
+<td>default</td>
+<td>volume down</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>channelAdd</td>
+<td>default</td>
+<td>next channel</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>channelSub</td>
+<td>default</td>
+<td>previous channel</td>
+</tr>
+<tr>
+<td>DVD, Speaker</td>
+<td>command</td>
+<td>setMute</td>
+<td>default</td>
+<td>mute/unmute</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>FastForward</td>
+<td>default</td>
+<td>fast forward</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>Rewind</td>
+<td>default</td>
+<td>rewind</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>Next</td>
+<td>default</td>
+<td>next track</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>Previous</td>
+<td>default</td>
+<td>last track</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>Pause</td>
+<td>default</td>
+<td>pause</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>Play</td>
+<td>default</td>
+<td>play/resume</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>Stop</td>
+<td>default</td>
+<td>stop</td>
+</tr>
+<tr>
+<td>Speaker</td>
+<td>command</td>
+<td>volumeAdd</td>
+<td>default</td>
+<td>volume up</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>volumeSub</td>
+<td>default</td>
+<td>volume down</td>
+</tr>
+<tr>
+<td>Fan</td>
+<td>command</td>
+<td>swing</td>
+<td>default</td>
+<td>swing</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>timer</td>
+<td>default</td>
+<td>set timer</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>lowSpeed</td>
+<td>default</td>
+<td>set fan speed to low</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>middleSpeed</td>
+<td>default</td>
+<td>set fan speed to medium</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>highSpeed</td>
+<td>default</td>
+<td>set fan speed to high</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>command</td>
+<td>brightnessUp</td>
+<td>default</td>
+<td>brightness up</td>
+</tr>
+<tr>
+<td></td>
+<td>command</td>
+<td>brightnessDown</td>
+<td>default</td>
+<td>brightness down</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p> Note: Most of the devices support <code>turnOn</code> or <code>turnOff</code>, which are case-sensitive. For infrared remote devices, when you have created customized buttons, you must set <code>commandType</code> to <code>customize</code>, otherwise the command will not work. <code>command</code> needs to be set to the name of the customized button.</p>
+</blockquote>
+<h4 id="path-parameters">Path parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deviceId</td>
+<td>String</td>
+<td>Yes</td>
+<td>device ID</td>
+</tr>
+</tbody>
+</table>
+<h4 id="request-body-parameters">Request body parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td>String</td>
+<td>Yes</td>
+<td>the name of the command</td>
+</tr>
+<tr>
+<td>parameter</td>
+<td>String</td>
+<td>No</td>
+<td>some commands require parameters, such as <code>SetChannel</code></td>
+</tr>
+<tr>
+<td>commandType</td>
+<td>String</td>
+<td>No</td>
+<td>for customized buttons, this needs to be set to <code>customzie</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="response">Response</h4>
+<p>The response is basically a JSON object, which contains the following properties,</p>
+<table>
+<thead>
+<tr>
+<th>Key Name</th>
+<th>Value Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>statusCode</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+</tr>
+<tr>
+<td>body</td>
+<td>Object<body></body></td>
+</tr>
+</tbody>
+</table>
+<h4 id="errors">Errors</h4>
+<table>
+<thead>
+<tr>
+<th>Error code/message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{&quot;message&quot;: &quot;Unauthorized&quot;}</td>
+<td>Http 401 Error. User permission is denied due to invalid token.</td>
+</tr>
+<tr>
+<td>151</td>
+<td>device type error</td>
+</tr>
+<tr>
+<td>152</td>
+<td>device not found</td>
+</tr>
+<tr>
+<td>160</td>
+<td>command is not supported</td>
+</tr>
+<tr>
+<td>161</td>
+<td>device offline</td>
+</tr>
+<tr>
+<td>171</td>
+<td>hub device is offline</td>
+</tr>
+<tr>
+<td>190</td>
+<td>Device internal error due to device states not synchronized with server. Or command fomrat is invalid.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sample">Sample</h4>
+<h5 id="bot-example">Bot example</h5>
+<p>Turn a Bot on</p>
+<p>Request</p>
+<pre><code class="lang-http">POST https://api.switch-bot.com/v1.0/devices/210/commands
+</code></pre>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;command&quot;</span>: <span class="hljs-string">&quot;turnOn&quot;</span>,
+    <span class="hljs-string">&quot;parameter&quot;</span>: <span class="hljs-string">&quot;default&quot;</span>,
+    <span class="hljs-string">&quot;commandType&quot;</span>: <span class="hljs-string">&quot;command&quot;</span>
+}
+</code></pre>
+<p>Response</p>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">&quot;body&quot;</span>: {},
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>
+}
+</code></pre>
+<h5 id="infrared-remote-device-example">Infrared remote device example</h5>
+<p>Set an Air Conditioner</p>
+<p>Request</p>
+<pre><code class="lang-http">POST https://api.switch-bot.com/v1.0/devices/02-202007201626-70/commands
+</code></pre>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;command&quot;</span>: <span class="hljs-string">&quot;setAll&quot;</span>,
+    <span class="hljs-string">&quot;parameter&quot;</span>: <span class="hljs-string">&quot;26,1,3,on&quot;</span>,
+    <span class="hljs-string">&quot;commandType&quot;</span>: <span class="hljs-string">&quot;command&quot;</span>
+}
+</code></pre>
+<p>Response</p>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">&quot;body&quot;</span>: {},
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>
+}
+</code></pre>
+<p>Trigger a customized button</p>
+<p>Request</p>
+<pre><code class="lang-http">POST https://api.switch-bot.com/v1.0/devices/02-202007201626-10/commands
+</code></pre>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;command&quot;</span>: <span class="hljs-string">&quot;ボタン&quot;</span>, <span class="hljs-comment">// the name of the customized button</span>
+    <span class="hljs-string">&quot;parameter&quot;</span>: <span class="hljs-string">&quot;default&quot;</span>,
+    <span class="hljs-string">&quot;commandType&quot;</span>: <span class="hljs-string">&quot;customize&quot;</span>
+}
+</code></pre>
+<p>Response</p>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">&quot;body&quot;</span>: {},
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Get_device_status.html" class="navigation navigation-prev " aria-label="Previous page: Get device status">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Get_scene_list.html" class="navigation navigation-next " aria-label="Next page: Get scene list">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Send device control commands","level":"2.3","depth":1,"next":{"title":"Get scene list","level":"3.1","depth":1,"path":"Get_scene_list.md","ref":"Get_scene_list.md","articles":[]},"previous":{"title":"Get device status","level":"2.2","depth":1,"path":"Get_device_status.md","ref":"Get_device_status.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Send_device_control_commands.md","mtime":"2020-12-31T06:50:02.717Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

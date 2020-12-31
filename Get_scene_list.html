@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Introduction · HonKit</title>
+        <title>Get scene list · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.16">
@@ -56,8 +56,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Authentication.html" />
+    <link rel="next" href="Execute_manual_scenes.html" />
     
+    
+    <link rel="prev" href="Send_device_control_commands.html" />
     
 
     </head>
@@ -86,7 +88,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -197,7 +199,7 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="Get_scene_list.html">
+        <li class="chapter active" data-level="3.1" data-path="Get_scene_list.html">
             
                 <a href="Get_scene_list.html">
             
@@ -249,8 +251,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.switch-bot.com" target="blank" class="gitbook-link">
-            www.switch-bot.com
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
         </a>
     </li>
 </ul>
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Get scene list</a>
     </h1>
 </div>
 
@@ -288,64 +290,109 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="introduction">Introduction</h2>
-<p>This document describes a collection of SwitchBot API methods, examples, and best practices for, but not limited to, IoT hobbyists, developers, and gurus to make their own smart home programs or applications. </p>
-<h2 id="getting-started">Getting Started</h2>
-<p>Please follow these steps,</p>
-<ol>
-<li>Download the SwitchBot app on App Store or Google Play Store</li>
-<li>Register a SwitchBot account and log in into your account</li>
-<li>Generate an Open Token within the app (release date to be announced)</li>
-<li>Roll up your sleeves and get your hands dirty with SwitchBot OpenAPI!</li>
-</ol>
-<h2 id="glossary">Glossary</h2>
-<p>The following table provides definitions to the terms to be frequently mentioned in the subsequent sections.</p>
+                                <h3 id="get-scene-list">Get scene list</h3>
+<pre><code class="lang-http">GET /v1.0/scenes
+</code></pre>
+<h4 id="description">Description</h4>
+<p>Get a list of manual scenes created by the current user.</p>
+<h4 id="response">Response</h4>
+<p>The response is basically a JSON object, which contains the following properties,</p>
 <table>
 <thead>
 <tr>
-<th>Term</th>
+<th>Key Name</th>
+<th>Value Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>statusCode</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+</tr>
+<tr>
+<td>body</td>
+<td>Object<body></body></td>
+</tr>
+</tbody>
+</table>
+<p>The body object contains a list of objects, which has the following properties,</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Hub</td>
-<td>Generally referred to these devices, SwitchBot Hub Model No. SwitchBot Hub S1/SwitchBot Hub Mini Model No. W0202200/SwitchBot Hub Plus Model No. SwitchBot Hub S1</td>
+<td>sceneId</td>
+<td>String</td>
+<td>a scene&apos;s ID</td>
 </tr>
 <tr>
-<td>Hub Mini</td>
-<td>Short for SwitchBot Hub Mini Model No. W0202200</td>
-</tr>
-<tr>
-<td>Hub Plus</td>
-<td>Short for SwitchBot Hub Plus Model No. SwitchBot Hub S1</td>
-</tr>
-<tr>
-<td>Bot</td>
-<td>Short for SwitchBot Bot Model No. SwitchBot S1</td>
-</tr>
-<tr>
-<td>Curtain</td>
-<td>Short for SwitchBot Curtain Model No. W0701600</td>
-</tr>
-<tr>
-<td>Plug</td>
-<td>Short for SwitchBot Plug Model No. SP11</td>
-</tr>
-<tr>
-<td>Meter</td>
-<td>Short for SwitchBot Thermometer and Hygrometer Model No. SwitchBot MeterTH S1</td>
-</tr>
-<tr>
-<td>Smart Fan</td>
-<td>Short for SwitchBot Smart Fan Model No. W0601100</td>
-</tr>
-<tr>
-<td>Cloud Service</td>
-<td>An SwitchBot app feature that 1. enables SwitchBot products to be discovered and communicated with third-party services voice control services, 2. allows users to create customized smart scenes and Android widgets. For BLE-based devices such as Bot and Curtain, you MUST first add a Hub/Hub Mini/Hub Plus and then enable Cloud Service on the Settings page in order to make use of the web API!</td>
+<td>sceneName</td>
+<td>String</td>
+<td>a scene&apos;s name</td>
 </tr>
 </tbody>
 </table>
+<h4 id="errors">Errors</h4>
+<table>
+<thead>
+<tr>
+<th>Error code/message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{&quot;message&quot;: &quot;Unauthorized&quot;}</td>
+<td>Http 401 Error. User permission is denied due to invalid token.</td>
+</tr>
+<tr>
+<td>190</td>
+<td>Device internal error due to device states not synchronized with server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sample">Sample</h4>
+<h5 id="get-all-scenes">Get all scenes</h5>
+<p>Request</p>
+<pre><code class="lang-http">GET https://api.switch-bot.com/v1.0/scenes
+</code></pre>
+<p>Response</p>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">&quot;body&quot;</span>: [
+        {
+            <span class="hljs-string">&quot;sceneId&quot;</span>: <span class="hljs-string">&quot;T02-20200804130110&quot;</span>,
+            <span class="hljs-string">&quot;sceneName&quot;</span>: <span class="hljs-string">&quot;Close Office Devices&quot;</span>
+        },
+        {
+            <span class="hljs-string">&quot;sceneId&quot;</span>: <span class="hljs-string">&quot;T02-202009221414-48924101&quot;</span>,
+            <span class="hljs-string">&quot;sceneName&quot;</span>: <span class="hljs-string">&quot;Set Office AC to 25&quot;</span>
+        },
+        {
+            <span class="hljs-string">&quot;sceneId&quot;</span>: <span class="hljs-string">&quot;T02-202011051830-39363561&quot;</span>,
+            <span class="hljs-string">&quot;sceneName&quot;</span>: <span class="hljs-string">&quot;Set Bedroom to 24&quot;</span>
+        },
+        {
+            <span class="hljs-string">&quot;sceneId&quot;</span>: <span class="hljs-string">&quot;T02-202011051831-82928991&quot;</span>,
+            <span class="hljs-string">&quot;sceneName&quot;</span>: <span class="hljs-string">&quot;Turn off home devices&quot;</span>
+        },
+        {
+            <span class="hljs-string">&quot;sceneId&quot;</span>: <span class="hljs-string">&quot;T02-202011062059-26364981&quot;</span>,
+            <span class="hljs-string">&quot;sceneName&quot;</span>: <span class="hljs-string">&quot;Set Bedroom to 26 degree&quot;</span>
+        }
+    ],
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>
+}
+</code></pre>
 
                                 
                                 </section>
@@ -373,8 +420,12 @@
 
             
                 
+                <a href="Send_device_control_commands.html" class="navigation navigation-prev " aria-label="Previous page: Send device control commands">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="Authentication.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Authentication">
+                
+                <a href="Execute_manual_scenes.html" class="navigation navigation-next " aria-label="Next page: Execute manual scenes">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -385,7 +436,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Authentication","level":"1.1.1","depth":2,"path":"Authentication.md","ref":"Authentication.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2020-12-31T07:02:27.298Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Get scene list","level":"3.1","depth":1,"next":{"title":"Execute manual scenes","level":"3.2","depth":1,"path":"Execute_manual_scenes.md","ref":"Execute_manual_scenes.md","articles":[]},"previous":{"title":"Send device control commands","level":"2.3","depth":1,"path":"Send_device_control_commands.md","ref":"Send_device_control_commands.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Get_scene_list.md","mtime":"2020-12-31T06:51:05.607Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

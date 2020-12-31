@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Introduction · HonKit</title>
+        <title>Get device list · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.16">
@@ -56,8 +56,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Authentication.html" />
+    <link rel="next" href="Get_device_status.html" />
     
+    
+    <link rel="prev" href="Standard_HTTP_Error_Codes.html" />
     
 
     </head>
@@ -86,7 +88,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -151,7 +153,7 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="Get_device_list.html">
+        <li class="chapter active" data-level="2.1" data-path="Get_device_list.html">
             
                 <a href="Get_device_list.html">
             
@@ -249,8 +251,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.switch-bot.com" target="blank" class="gitbook-link">
-            www.switch-bot.com
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
         </a>
     </li>
 </ul>
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Get device list</a>
     </h1>
 </div>
 
@@ -288,64 +290,241 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="introduction">Introduction</h2>
-<p>This document describes a collection of SwitchBot API methods, examples, and best practices for, but not limited to, IoT hobbyists, developers, and gurus to make their own smart home programs or applications. </p>
-<h2 id="getting-started">Getting Started</h2>
-<p>Please follow these steps,</p>
-<ol>
-<li>Download the SwitchBot app on App Store or Google Play Store</li>
-<li>Register a SwitchBot account and log in into your account</li>
-<li>Generate an Open Token within the app (release date to be announced)</li>
-<li>Roll up your sleeves and get your hands dirty with SwitchBot OpenAPI!</li>
-</ol>
-<h2 id="glossary">Glossary</h2>
-<p>The following table provides definitions to the terms to be frequently mentioned in the subsequent sections.</p>
+                                <h3 id="get-device-list">Get device list</h3>
+<pre><code class="lang-http">GET /v1.0/devices
+</code></pre>
+<h4 id="description">Description</h4>
+<p>Get a list of devices, which include physical devices and virtual infrared remote devices that have been added to the current user&apos;s account.</p>
+<p>Physical devices refer to the following SwitchBot products,</p>
+<ul>
+<li>Hub</li>
+<li>Hub Plus</li>
+<li>Hub Mini</li>
+<li>Bot (MUST enable Cloud Service first)</li>
+<li>Curtain (MUST enable Cloud Service first)</li>
+<li>Plug</li>
+<li>Meter</li>
+<li>Humidifier</li>
+<li>Smart Fan</li>
+</ul>
+<p>Virtual infrared remote devices refer to virtual devices that are used to simulate infrared signals of a home appliance remote control. A SwitchBot Hub Plus / Hub Mini is required in order to be able to create these virtual devices within the app. The types of appliances supported include,</p>
+<ul>
+<li>Air Conditioner</li>
+<li>TV</li>
+<li>Light</li>
+<li>IPTV/Streamer</li>
+<li>Set Top Box</li>
+<li>DVD</li>
+<li>Fan</li>
+<li>Projector</li>
+<li>Camera</li>
+<li>Air Purifier</li>
+<li>Speaker</li>
+<li>Water Heater</li>
+<li>Vacuum Cleaner</li>
+<li>Others</li>
+</ul>
+<h4 id="responses">Responses</h4>
+<p>The response is basically a JSON object, which contains the following properties,</p>
 <table>
 <thead>
 <tr>
-<th>Term</th>
+<th>Key Name</th>
+<th>Value Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>statusCode</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>message</td>
+<td>String</td>
+</tr>
+<tr>
+<td>body</td>
+<td>Object<body></body></td>
+</tr>
+</tbody>
+</table>
+<p>The body object contains the following properties,</p>
+<table>
+<thead>
+<tr>
+<th>Key Name</th>
+<th>Value Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Hub</td>
-<td>Generally referred to these devices, SwitchBot Hub Model No. SwitchBot Hub S1/SwitchBot Hub Mini Model No. W0202200/SwitchBot Hub Plus Model No. SwitchBot Hub S1</td>
+<td>deviceList</td>
+<td>Array<device></device></td>
+<td>a list of physical devices</td>
 </tr>
 <tr>
-<td>Hub Mini</td>
-<td>Short for SwitchBot Hub Mini Model No. W0202200</td>
-</tr>
-<tr>
-<td>Hub Plus</td>
-<td>Short for SwitchBot Hub Plus Model No. SwitchBot Hub S1</td>
-</tr>
-<tr>
-<td>Bot</td>
-<td>Short for SwitchBot Bot Model No. SwitchBot S1</td>
-</tr>
-<tr>
-<td>Curtain</td>
-<td>Short for SwitchBot Curtain Model No. W0701600</td>
-</tr>
-<tr>
-<td>Plug</td>
-<td>Short for SwitchBot Plug Model No. SP11</td>
-</tr>
-<tr>
-<td>Meter</td>
-<td>Short for SwitchBot Thermometer and Hygrometer Model No. SwitchBot MeterTH S1</td>
-</tr>
-<tr>
-<td>Smart Fan</td>
-<td>Short for SwitchBot Smart Fan Model No. W0601100</td>
-</tr>
-<tr>
-<td>Cloud Service</td>
-<td>An SwitchBot app feature that 1. enables SwitchBot products to be discovered and communicated with third-party services voice control services, 2. allows users to create customized smart scenes and Android widgets. For BLE-based devices such as Bot and Curtain, you MUST first add a Hub/Hub Mini/Hub Plus and then enable Cloud Service on the Settings page in order to make use of the web API!</td>
+<td>infraredRemoteList</td>
+<td>Array<infraredremote></infraredremote></td>
+<td>a list of virtual infrared remote devices</td>
 </tr>
 </tbody>
 </table>
+<p>The deviceList array contains a list of objects with the following key-value attributes,</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deviceId</td>
+<td>String</td>
+<td>device ID</td>
+</tr>
+<tr>
+<td>deviceName</td>
+<td>String</td>
+<td>device name</td>
+</tr>
+<tr>
+<td>deviceType</td>
+<td>String</td>
+<td>device type</td>
+</tr>
+<tr>
+<td>enableCloudService</td>
+<td>Boolean</td>
+<td>determines if Cloud Service is enabled or not for the current device</td>
+</tr>
+<tr>
+<td>hubDeviceId</td>
+<td>String</td>
+<td>device&apos;s parent Hub ID</td>
+</tr>
+<tr>
+<td>curtainDevicesIds</td>
+<td>Array<deviceid></deviceid></td>
+<td>only available for Curtain devices. a list of Curtain device IDs such that the Curtain devices are being paired or grouped</td>
+</tr>
+<tr>
+<td>calibrate</td>
+<td>Boolean</td>
+<td>only available for Curtain devices. determines if the open position and the close position of a Curtain have been properly calibrated or not</td>
+</tr>
+<tr>
+<td>group</td>
+<td>Boolean</td>
+<td>only available for Curtain devices. determines if a Curtain is paired with or grouped with another Curtain or not</td>
+</tr>
+<tr>
+<td>master</td>
+<td>Boolean</td>
+<td>only available for Curtain devices. determines if a Curtain is the master device or not when paired with or grouped with another Curtain</td>
+</tr>
+<tr>
+<td>openDirection</td>
+<td>String</td>
+<td>only available for Curtain devices. the opening direction of a Curtain</td>
+</tr>
+</tbody>
+</table>
+<p>The infraredRemoteList array contains a list of objects with the following key-value attributes,</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deviceId</td>
+<td>String</td>
+<td>device ID</td>
+</tr>
+<tr>
+<td>deviceName</td>
+<td>String</td>
+<td>device name</td>
+</tr>
+<tr>
+<td>remoteType</td>
+<td>String</td>
+<td>device type</td>
+</tr>
+<tr>
+<td>hubDeviceId</td>
+<td>String</td>
+<td>remote device&apos;s parent Hub ID</td>
+</tr>
+</tbody>
+</table>
+<p>The response may contain the following codes and messages,</p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Body Content</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Device list object</td>
+<td>success</td>
+<td>Returns an object that contains two device lists</td>
+</tr>
+<tr>
+<td>n/a</td>
+<td>n/a</td>
+<td>Unauthorized</td>
+<td>Http 401 Error. User permission is denied due to invalid token.</td>
+</tr>
+<tr>
+<td>190</td>
+<td>n/a</td>
+<td>System error</td>
+<td>Device internal error due to device states not synchronized with server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sample">Sample</h4>
+<h5 id="get-all-devices">Get all devices</h5>
+<p>Request</p>
+<pre><code class="lang-http">GET https://api.switch-bot.com/v1.0/devices
+</code></pre>
+<p>Response</p>
+<pre><code class="lang-js">{
+    <span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">100</span>,
+    <span class="hljs-string">&quot;body&quot;</span>: {
+        <span class="hljs-string">&quot;deviceList&quot;</span>: [
+            {
+                <span class="hljs-string">&quot;deviceId&quot;</span>: <span class="hljs-string">&quot;500291B269BE&quot;</span>,
+                <span class="hljs-string">&quot;deviceName&quot;</span>: <span class="hljs-string">&quot;Living Room Humidifier&quot;</span>,
+                <span class="hljs-string">&quot;deviceType&quot;</span>: <span class="hljs-string">&quot;Humidifier&quot;</span>,
+                <span class="hljs-string">&quot;enableCloudService&quot;</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-string">&quot;hubDeviceId&quot;</span>: <span class="hljs-string">&quot;000000000000&quot;</span>
+            }
+        ],
+        <span class="hljs-string">&quot;infraredRemoteList&quot;</span>: [
+            {
+                <span class="hljs-string">&quot;deviceId&quot;</span>: <span class="hljs-string">&quot;02-202008110034-13&quot;</span>,
+                <span class="hljs-string">&quot;deviceName&quot;</span>: <span class="hljs-string">&quot;Living Room TV&quot;</span>,
+                <span class="hljs-string">&quot;remoteType&quot;</span>: <span class="hljs-string">&quot;TV&quot;</span>,
+                <span class="hljs-string">&quot;hubDeviceId&quot;</span>: <span class="hljs-string">&quot;FA7310762361&quot;</span>
+            }
+        ]
+    },
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;success&quot;</span>
+}
+</code></pre>
 
                                 
                                 </section>
@@ -373,8 +552,12 @@
 
             
                 
+                <a href="Standard_HTTP_Error_Codes.html" class="navigation navigation-prev " aria-label="Previous page: Standard HTTP Error Codes">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="Authentication.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Authentication">
+                
+                <a href="Get_device_status.html" class="navigation navigation-next " aria-label="Next page: Get device status">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -385,7 +568,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Authentication","level":"1.1.1","depth":2,"path":"Authentication.md","ref":"Authentication.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2020-12-31T07:02:27.298Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Get device list","level":"2.1","depth":1,"next":{"title":"Get device status","level":"2.2","depth":1,"path":"Get_device_status.md","ref":"Get_device_status.md","articles":[]},"previous":{"title":"Standard HTTP Error Codes","level":"1.1.3","depth":2,"path":"Standard_HTTP_Error_Codes.md","ref":"Standard_HTTP_Error_Codes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Get_device_list.md","mtime":"2020-12-31T06:48:58.870Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

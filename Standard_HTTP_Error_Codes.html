@@ -3,7 +3,7 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <title>Introduction · HonKit</title>
+        <title>Standard HTTP Error Codes · HonKit</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.16">
@@ -56,8 +56,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Authentication.html" />
+    <link rel="next" href="Get_device_list.html" />
     
+    
+    <link rel="prev" href="API_Usage.html" />
     
 
     </head>
@@ -86,7 +88,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -126,7 +128,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.1.3" data-path="Standard_HTTP_Error_Codes.html">
+        <li class="chapter active" data-level="1.1.3" data-path="Standard_HTTP_Error_Codes.html">
             
                 <a href="Standard_HTTP_Error_Codes.html">
             
@@ -249,8 +251,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.switch-bot.com" target="blank" class="gitbook-link">
-            www.switch-bot.com
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
         </a>
     </li>
 </ul>
@@ -273,7 +275,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Standard HTTP Error Codes</a>
     </h1>
 </div>
 
@@ -288,61 +290,61 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="introduction">Introduction</h2>
-<p>This document describes a collection of SwitchBot API methods, examples, and best practices for, but not limited to, IoT hobbyists, developers, and gurus to make their own smart home programs or applications. </p>
-<h2 id="getting-started">Getting Started</h2>
-<p>Please follow these steps,</p>
-<ol>
-<li>Download the SwitchBot app on App Store or Google Play Store</li>
-<li>Register a SwitchBot account and log in into your account</li>
-<li>Generate an Open Token within the app (release date to be announced)</li>
-<li>Roll up your sleeves and get your hands dirty with SwitchBot OpenAPI!</li>
-</ol>
-<h2 id="glossary">Glossary</h2>
-<p>The following table provides definitions to the terms to be frequently mentioned in the subsequent sections.</p>
+                                <h3 id="standard-http-error-codes">Standard HTTP Error Codes</h3>
+<p>The following table lists the most common HTTP error response,</p>
 <table>
 <thead>
 <tr>
-<th>Term</th>
-<th>Description</th>
+<th style="text-align:left">Code</th>
+<th style="text-align:left">Name</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Hub</td>
-<td>Generally referred to these devices, SwitchBot Hub Model No. SwitchBot Hub S1/SwitchBot Hub Mini Model No. W0202200/SwitchBot Hub Plus Model No. SwitchBot Hub S1</td>
+<td style="text-align:left">400</td>
+<td style="text-align:left">Bad Request</td>
+<td style="text-align:left">The client has issued an invalid request. This is commonly used to specify validation errors in a request payload.</td>
 </tr>
 <tr>
-<td>Hub Mini</td>
-<td>Short for SwitchBot Hub Mini Model No. W0202200</td>
+<td style="text-align:left">401</td>
+<td style="text-align:left">Unauthorized</td>
+<td style="text-align:left">Authorization for the API is required, but the request has not been authenticated.</td>
 </tr>
 <tr>
-<td>Hub Plus</td>
-<td>Short for SwitchBot Hub Plus Model No. SwitchBot Hub S1</td>
+<td style="text-align:left">403</td>
+<td style="text-align:left">Forbidden</td>
+<td style="text-align:left">The request has been authenticated but does not have appropriate permissions, or a requested resource is not found.</td>
 </tr>
 <tr>
-<td>Bot</td>
-<td>Short for SwitchBot Bot Model No. SwitchBot S1</td>
+<td style="text-align:left">404</td>
+<td style="text-align:left">Not Found</td>
+<td style="text-align:left">Specifies the requested path does not exist.</td>
 </tr>
 <tr>
-<td>Curtain</td>
-<td>Short for SwitchBot Curtain Model No. W0701600</td>
+<td style="text-align:left">406</td>
+<td style="text-align:left">Not Acceptable</td>
+<td style="text-align:left">The client has requested a MIME type via the Accept header for a value not supported by the server.</td>
 </tr>
 <tr>
-<td>Plug</td>
-<td>Short for SwitchBot Plug Model No. SP11</td>
+<td style="text-align:left">415</td>
+<td style="text-align:left">Unsupported Media Type</td>
+<td style="text-align:left">The client has defined a contentType header that is not supported by the server.</td>
 </tr>
 <tr>
-<td>Meter</td>
-<td>Short for SwitchBot Thermometer and Hygrometer Model No. SwitchBot MeterTH S1</td>
+<td style="text-align:left">422</td>
+<td style="text-align:left">Unprocessable Entity</td>
+<td style="text-align:left">The client has made a valid request, but the server cannot process it. This is often used for APIs for which certain limits have been exceeded.</td>
 </tr>
 <tr>
-<td>Smart Fan</td>
-<td>Short for SwitchBot Smart Fan Model No. W0601100</td>
+<td style="text-align:left">429</td>
+<td style="text-align:left">Too Many Requests</td>
+<td style="text-align:left">The client has exceeded the number of requests allowed for a given time window.</td>
 </tr>
 <tr>
-<td>Cloud Service</td>
-<td>An SwitchBot app feature that 1. enables SwitchBot products to be discovered and communicated with third-party services voice control services, 2. allows users to create customized smart scenes and Android widgets. For BLE-based devices such as Bot and Curtain, you MUST first add a Hub/Hub Mini/Hub Plus and then enable Cloud Service on the Settings page in order to make use of the web API!</td>
+<td style="text-align:left">500</td>
+<td style="text-align:left">Internal Server Error</td>
+<td style="text-align:left">An unexpected error on the SmartThings servers has occurred. These errors should be rare.</td>
 </tr>
 </tbody>
 </table>
@@ -373,8 +375,12 @@
 
             
                 
+                <a href="API_Usage.html" class="navigation navigation-prev " aria-label="Previous page: API Usage">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="Authentication.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Authentication">
+                
+                <a href="Get_device_list.html" class="navigation navigation-next " aria-label="Next page: Get device list">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -385,7 +391,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Authentication","level":"1.1.1","depth":2,"path":"Authentication.md","ref":"Authentication.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2020-12-31T07:02:27.298Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Standard HTTP Error Codes","level":"1.1.3","depth":2,"next":{"title":"Get device list","level":"2.1","depth":1,"path":"Get_device_list.md","ref":"Get_device_list.md","articles":[]},"previous":{"title":"API Usage","level":"1.1.2","depth":2,"path":"API_Usage.md","ref":"API_Usage.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Standard_HTTP_Error_Codes.md","mtime":"2020-12-31T06:43:54.201Z","type":"markdown"},"gitbook":{"version":"3.6.16","time":"2020-12-31T07:09:06.191Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
